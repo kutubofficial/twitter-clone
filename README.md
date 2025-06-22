@@ -99,11 +99,11 @@ Copy your config to firebase.js
 ✅ Protected routes
 
 ## 🛠️ Deployment
-Frontend: Vercel / Netlify
+Frontend: Vercel / Netlify  (still working)
 
-Backend: Render / Railway
+Backend: Render / Railway  (still working)
 
-MongoDB: MongoDB Atlas
+MongoDB: MongoDB Atlas  
 
 
 ## 📚 Learnings
