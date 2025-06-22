@@ -1,0 +1,104 @@
+/* Existing styles remain unchanged */
+.tweetBox {
+  padding-bottom: 10px;
+  border-bottom: 8px solid var(--twitter-background);
+  padding-right: 10px;
+}
+
+.tweetBox > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweetBox__input {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.tweetBox__input > input {
+  flex: 1;
+  margin-left: 15px;
+  font-size: 20px;
+  border: none;
+  margin-top: 0px;
+}
+
+.tweetBox__imageInput {
+  border: none;
+  padding: 5px 20px;
+}
+
+.imageIcon_tweetButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tweetBox__tweetButton {
+  background-color: var(--twitter-color) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 700 !important;
+  text-transform: inherit !important;
+  border-radius: 50px !important;
+  width: 100px;
+  height: 40px !important;
+}
+
+.imageIcon {
+  color: var(--twitter-color);
+  padding-left: 25px;
+}
+
+.imageInput {
+  display: none;
+}
+
+/* Audio tweet section */
+.audioTweetBox {
+  padding: 20px;
+  border-top: 1px solid var(--twitter-background);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* OTP input */
+.audioTweetBox input[type="text"] {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+/* Audio preview player */
+.audioTweetBox audio {
+  width: 100%;
+  outline: none;
+}
+
+/* New styles for IconButton */
+.tweetBox__iconButton {
+  color: var(--twitter-color) !important;
+  padding: 8px !important;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.tweetBox__iconButton:hover {
+  background-color: rgba(29, 155, 240, 0.1) !important; /* Light Twitter blue on hover */
+}
+
+.tweetBox__stopButton {
+  color: #f44336 !important; /* Red for stop button */
+}
+
+.tweetBox__stopButton:hover {
+  background-color: rgba(244, 67, 54, 0.1) !important; /* Light red on hover */
+}
+
+/* Ensure icons are properly sized */
+.tweetBox__iconButton svg {
+  font-size: 24px !important; /* Adjust icon size */
+}
