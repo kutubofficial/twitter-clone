@@ -1,4 +1,4 @@
-const axios = require("axios");
+const nodemailer = require("nodemailer");
 const { generateOTP, setOTP, getOTP, deleteOTP } = require("../utils/otpStore");
 
 const sendOTP = async (req, res) => {
@@ -8,33 +8,27 @@ const sendOTP = async (req, res) => {
   const otp = generateOTP();
   setOTP(email, otp);
 
-  const templateParams = {
-    user_email: email,
-    otp_code: otp,
-  };
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
 
   try {
-    const response = await axios.post(
-      "https://api.emailjs.com/api/v1.0/email/send",
-      {
-        service_id: process.env.EMAILJS_SERVICE_ID,
-        template_id: process.env.EMAILJS_TEMPLATE_ID,
-        user_id: process.env.EMAILJS_PUBLIC_KEY,
-        accessToken: process.env.EMAILJS_PRIVATE_KEY, // Include accessToken in the body
-        template_params: templateParams,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    console.log("EmailJS response:", response.data);
+    let info = await transporter.sendMail({
+      from: `"Twiller" <${process.env.GMAIL_USER}>`,
+      to: email,
+      subject: "Your OTP Code",
+      text: `Your OTP is ${otp}. It expires in 5 minutes.`,
+      html: `<p>Your OTP is <b>${otp}</b>. It expires in 5 minutes.</p>`,
+    });
+    console.log("Nodemailer: OTP sent to", email);
+    console.log("Nodemailer: OTP sent to", info.messageId);
     res.send({ message: "OTP sent successfully" });
   } catch (error) {
-    console.error("EmailJS error:", error.response?.data || error.message);
-    // console.log("Full error object:", error);
+    console.error("Nodemailer error: ", error.message);
     res.status(500).send({ error: "Failed to send OTP" });
   }
 };

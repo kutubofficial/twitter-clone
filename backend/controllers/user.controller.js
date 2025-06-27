@@ -2,6 +2,12 @@ let usercollection;
 
 async function registerUser(req, res) {
   const user = req.body;
+  if (!user.email) return res.status(400).send({ error: "Email is required" });
+
+  //* Check if email already exists
+  const existingUser = await usercollection.findOne({ email: user.email });
+  if (existingUser) return res.status(409).send({ error: "Email already registered" });
+
   const result = await usercollection.insertOne(user);
   res.send(result);
 }
@@ -26,10 +32,16 @@ async function getAllUsers(req, res) {
   res.send(users);
 }
 
+async function verifyUserExists(email) {
+  const user = await usercollection.findOne({ email });
+  return !!user;
+}
+
 module.exports = {
   registerUser,
   getUser,
   updateUser,
   getAllUsers,
+  verifyUserExists,
   setUserCollection: (col) => (usercollection = col),
 };

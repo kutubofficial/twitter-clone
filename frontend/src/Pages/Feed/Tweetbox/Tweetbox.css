@@ -1,4 +1,3 @@
-/* Existing styles remain unchanged */
 .tweetBox {
   padding-bottom: 10px;
   border-bottom: 8px solid var(--twitter-background);
@@ -55,7 +54,6 @@
   display: none;
 }
 
-/* Audio tweet section */
 .audioTweetBox {
   padding: 20px;
   border-top: 1px solid var(--twitter-background);
@@ -64,7 +62,6 @@
   gap: 12px;
 }
 
-/* OTP input */
 .audioTweetBox input[type="text"] {
   padding: 8px;
   font-size: 16px;
@@ -73,13 +70,11 @@
   width: 200px;
 }
 
-/* Audio preview player */
 .audioTweetBox audio {
   width: 100%;
   outline: none;
 }
 
-/* New styles for IconButton */
 .tweetBox__iconButton {
   color: var(--twitter-color) !important;
   padding: 8px !important;
@@ -87,18 +82,17 @@
 }
 
 .tweetBox__iconButton:hover {
-  background-color: rgba(29, 155, 240, 0.1) !important; /* Light Twitter blue on hover */
+  background-color: rgba(29, 155, 240, 0.1) !important;
 }
 
 .tweetBox__stopButton {
-  color: #f44336 !important; /* Red for stop button */
+  color: #f44336 !important;
 }
 
 .tweetBox__stopButton:hover {
-  background-color: rgba(244, 67, 54, 0.1) !important; /* Light red on hover */
+  background-color: rgba(244, 67, 54, 0.1) !important;
 }
 
-/* Ensure icons are properly sized */
 .tweetBox__iconButton svg {
-  font-size: 24px !important; /* Adjust icon size */
+  font-size: 24px !important;
 }

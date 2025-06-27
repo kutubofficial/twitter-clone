@@ -2,8 +2,7 @@ const { MongoClient } = require("mongodb");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const uri = process.env.MONGODB_URL
-const uri_atlas = process.env.MONGODB_ATLAS
+const uri = process.env.MONGODB_URL || process.env.MONGODB_ATLAS;
 const client = new MongoClient(uri);
 
 async function connectDB() {
@@ -13,6 +12,7 @@ async function connectDB() {
     return {
       postcollection: client.db("database").collection("posts"),
       usercollection: client.db("database").collection("users"),
+      loginhistorycollection: client.db("database").collection("loginhistory"),
     };
   } catch (err) {
     console.error("DB connection error:", err);
