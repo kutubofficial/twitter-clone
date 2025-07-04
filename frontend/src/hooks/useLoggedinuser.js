@@ -14,7 +14,7 @@ const useLoggedinuser = () => {
       .then((data) => {
         setloggedinuser(data);
       });
-  }, [email]); // ✅ Only depend on email
+  }, [email]); 
 
   return [loggedinuser, setloggedinuser];
 };
