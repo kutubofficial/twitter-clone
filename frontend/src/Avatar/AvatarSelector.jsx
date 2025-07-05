@@ -39,10 +39,8 @@ const AvatarSelector = ({ isOpen, onClose, currentAvatar }) => {
   };
 
   const updateUserProfile = async (photoURL) => {
-    // Update Firebase Auth
     await updateProfile(auth.currentUser, { photoURL });
     
-    // Update Firestore (if you're using it)
     try {
       await updateDoc(doc(db, "users", auth.currentUser.uid), {
         photoURL: photoURL,
@@ -208,7 +206,7 @@ const AvatarSelector = ({ isOpen, onClose, currentAvatar }) => {
           </>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px' }}>
-            {defaultAvatars.map((avatar, index) => (
+            {defaultAvatars?.map((avatar, index) => (
               <div 
                 key={index} 
                 onClick={() => !isLoading && handleDefaultSelect(avatar)}
