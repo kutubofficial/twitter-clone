@@ -14,6 +14,7 @@ import Profile from "./Pages/Profile/Profile";
 import More from "./Pages/more/More";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
 import Bookmark from "./Pages/Bookmark/Bookmark";
+import LoginHistory from "./Pages/Login History/LoginHistory";
 function App() {
   return (
     <div className="app">
@@ -50,6 +51,7 @@ function App() {
             <Route path="bookmarks" element={<Bookmark />} />
             <Route path="profile" element={<Profile />} />
             <Route path="more" element={<More />} />
+            <Route path="history" element={<LoginHistory />} />
           </Route>
         </Routes>
       </UserAuthContextProvider>

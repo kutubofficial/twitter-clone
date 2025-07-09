@@ -17,15 +17,16 @@ import { Avatar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import HistoryIcon from "@mui/icons-material/History";
 import "./sidebar.css";
 import Customlink from "./Customlink";
 import Sidebaroption from "./Sidebaroption";
 import { useNavigate } from "react-router-dom";
-import useLoggedinuser from "../../hooks/useLoggedinuser"
+import useLoggedinuser from "../../hooks/useLoggedinuser";
 const Sidebar = ({ handlelogout, user }) => {
   const [anchorE1, setanchorE1] = useState(null);
   const openmenu = Boolean(anchorE1);
-  const [ loggedinuser] = useLoggedinuser();
+  const [loggedinuser] = useLoggedinuser();
   const navigate = useNavigate();
   const handleclick = (e) => {
     setanchorE1(e.currentTarget);
@@ -62,6 +63,9 @@ const Sidebar = ({ handlelogout, user }) => {
       </Customlink>
       <Customlink to="/home/more">
         <Sidebaroption Icon={MoreIcon} text="More" />
+      </Customlink>
+      <Customlink to="/home/history">
+        <Sidebaroption Icon={HistoryIcon} text="Login History" />
       </Customlink>
       <Button variant="outlined" className="sidebar__tweet" fullWidth>
         Tweet
@@ -109,7 +113,7 @@ const Sidebar = ({ handlelogout, user }) => {
                 loggedinuser[0]?.profileImage
                   ? loggedinuser[0]?.profileImage
                   : user && user.photoURL
-                  // : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+                // : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
               }
             />
             <div className="user__info subUser__info">
