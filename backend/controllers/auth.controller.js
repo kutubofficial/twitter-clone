@@ -10,15 +10,20 @@ async function loginUser(req, res) {
   const agent = useragent.parse(req.headers["user-agent"]);
   const browser = agent.family.toLowerCase();
   const os = agent.os.family;
-  const deviceType = agent.device.family.toLowerCase().includes("mobile") ? "mobile" : "desktop";
+  const deviceType = agent.device.family.toLowerCase().includes("mobile")
+    ? "mobile"
+    : "desktop";
   const ipAddress = req.ip;
 
   //* Mobile time restriction (10 AM–1 PM IST)
   if (deviceType === "mobile") {
     const now = new Date();
-    const hourIST = (now.getUTCHours() + 5 + (now.getUTCMinutes() + 30) / 60) % 24;
+    const hourIST =
+      (now.getUTCHours() + 5 + (now.getUTCMinutes() + 30) / 60) % 24;
     if (hourIST < 10 || hourIST > 13) {
-      return res.status(403).send({ error: "Mobile access allowed only between 10 AM–1 PM IST" });
+      return res
+        .status(403)
+        .send({ error: "Mobile access allowed only between 10 AM–1 PM IST" });
     }
   }
 
@@ -48,7 +53,9 @@ async function verifyLoginOTP(req, res) {
   const agent = useragent.parse(req.headers["user-agent"]);
   const browser = agent.family;
   const os = agent.os.family;
-  const deviceType = agent.device.family.toLowerCase().includes("mobile") ? "mobile" : "desktop";
+  const deviceType = agent.device.family.toLowerCase().includes("mobile")
+    ? "mobile"
+    : "desktop";
   const ipAddress = req.ip;
 
   // Verify OTP
@@ -82,14 +89,39 @@ async function getLoginHistory(req, res) {
   if (!email) return res.status(400).send({ error: "Email is required" });
 
   try {
-    const history = await loginhistorycollection
+    const latest = await loginhistorycollection
       .find({ userEmail: email })
       .sort({ loginTime: -1 })
+      .limit(1) 
       .toArray();
-    res.send(history);
+
+    res.send(latest);
   } catch (error) {
     console.error("Error fetching login history:", error.message);
     res.status(500).send({ error: "Failed to fetch login history" });
+  }
+}
+
+async function saveLoginHistory(req, res) {
+  const { email, browser, os, deviceType } = req.body;
+  const ipAddress = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+
+  if (!email) return res.status(400).json({ error: "Email is required" });
+
+  try {
+    await loginhistorycollection.insertOne({
+      userEmail: email,
+      browser,
+      os,
+      deviceType,
+      ipAddress,
+      loginTime: new Date(),
+    });
+
+    res.json({ success: true, message: "Login history saved" });
+  } catch (err) {
+    console.error("Error saving login history:", err.message);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
 
@@ -97,5 +129,6 @@ module.exports = {
   loginUser,
   verifyLoginOTP,
   getLoginHistory,
+  saveLoginHistory,
   setLoginHistoryCollection: (col) => (loginhistorycollection = col),
 };

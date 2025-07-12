@@ -244,7 +244,7 @@ const Editprofile = ({ user, loggedinuser }) => {
 
       {open && (
         <div className="modal-overlay">
-          <div className="modal" style={{ width: 600, height: 600 }}>
+          <div className="modal">
             <div className="header">
               <button onClick={() => setopen(false)}>
                 <CloseIcon />

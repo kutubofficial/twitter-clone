@@ -17,6 +17,7 @@ export function UserAuthContextProvider(props) {
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
+
   function signUp(email, password) {
     try {
       createUserWithEmailAndPassword(auth, email, password)
@@ -34,23 +35,47 @@ export function UserAuthContextProvider(props) {
       }
     }
   }
+
   function logOut() {
     return signOut(auth);
   }
+
   function googleSignIn() {
     const googleAuthProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleAuthProvider);
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      // console.log("Auth", currentuser);
+    const unsubscribe = onAuthStateChanged(auth, async (currentuser) => {
       setUser(currentuser);
+
+      //* Save login history after Firebase login
+      if (currentuser?.email) {
+        const userAgent = navigator.userAgent;
+        const os = navigator.platform;
+        const deviceType = /mobile/i.test(userAgent) ? "mobile" : "desktop";
+        console.log("HISTORY ", userAgent, os, deviceType);
+
+        try {
+          await fetch("http://localhost:5000/save-login-history", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: currentuser.email,
+              browser: userAgent,
+              os,
+              deviceType,
+            }),
+          });
+        } catch (error) {
+          console.error("Failed to save login history:", error.message);
+        }
+      }
     });
 
-    return () => {
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -61,7 +86,7 @@ export function UserAuthContextProvider(props) {
     </userAuthContext.Provider>
   );
 }
-// export default UserAuthContextProvider
+
 export function useUserAuth() {
   return useContext(userAuthContext);
 }

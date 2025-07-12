@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../../context/UserAuthContext";
-import "./LoginHistory.css"
+import "./LoginHistory.css";
 
 const LoginHistory = () => {
   const { user } = useUserAuth();
@@ -35,7 +35,7 @@ const LoginHistory = () => {
 
       <div className="login-history-content">
         {loading ? (
-          <div className="loading-spinner">Loading...</div>
+          <div className="loading-spinner container">Loading...</div>
         ) : history.length === 0 ? (
           <div className="empty-state">No login history found.</div>
         ) : (
