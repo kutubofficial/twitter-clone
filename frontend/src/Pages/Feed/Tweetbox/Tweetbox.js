@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Tweetbox.css";
 import { Avatar, Button, TextField, IconButton } from "@mui/material";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
-import MicIcon from "@mui/icons-material/Mic"; // For Start Audio
-import EmailIcon from "@mui/icons-material/Email"; // For Send OTP
-import StopIcon from "@mui/icons-material/Stop"; // For Stop Recording
+import MicIcon from "@mui/icons-material/Mic"; 
+import EmailIcon from "@mui/icons-material/Email"; 
+import StopIcon from "@mui/icons-material/Stop"; 
 import axios from "axios";
 import { useUserAuth } from "../../../context/UserAuthContext";
 import useLoggedinuser from "../../../hooks/useLoggedinuser";
@@ -33,7 +33,6 @@ const TweetBox = () => {
   const email = user?.email;
   const profileImage = loggedinuser[0]?.profileImage || user?.photoURL;
 
-  // UseEffect to fetch user data
   useEffect(() => {
     if (!user || !email || hasFetchedUserData.current) return;
 
@@ -237,7 +236,6 @@ const TweetBox = () => {
             onChange={handleImageUpload}
           />
 
-          {/* Icon Buttons for Start Audio, Stop Recording, and Send OTP */}
           {!recording && (
             <IconButton
               onClick={startRecording}

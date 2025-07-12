@@ -20,7 +20,7 @@ const Feed = () => {
         <h2>Home</h2>
       </div>
       <Tweetbox />
-      {post.map((p) => (
+      {post?.map((p) => (
         <Posts key={p._id} p={p} />
       ))}
     </div>

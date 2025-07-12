@@ -2,8 +2,10 @@
   flex: 0.35;
   padding: 20px;
   overflow-y: scroll;
-  height: 100vh;
-  max-width: 1300px;
+  height: 90vh; 
+  max-width: 120px;
+  /* min-width: 320px; */
+  /* border: 5px solid red; */
   position: sticky;
   top: 0;
 }
@@ -15,6 +17,8 @@
 .widgets {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  max-width: 150px;
+  min-width: 22.5rem;
 }
 
 .widgets__input {

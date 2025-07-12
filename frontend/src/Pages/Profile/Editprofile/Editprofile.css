@@ -1,4 +1,4 @@
-.modal {
+/* .modal {
     background-color: white;
     padding: 10px;
     overflow-y: scroll;
@@ -148,4 +148,171 @@
   
   .last-section>.last-btn:hover {
     background-color: #b4b7b9
-  }
+  } */
+
+
+  /* Editprofile.css - Updated to match your existing style */
+.Edit-profile-btn {
+  border: 1px solid rgb(29, 155, 240);
+  color: rgb(29, 155, 240);
+  background: transparent;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.modal {
+  background-color: white;
+  width: 600px;
+  height: 600px;
+  border-radius: 16px;
+  overflow-y: scroll;
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  z-index: 1;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.save-btn {
+  color: white;
+  background-color: black;
+  padding: 5px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fill-content {
+  padding: 15px;
+}
+
+.text-field {
+  width: 100%;
+  padding: 12px 0;
+  margin-bottom: 15px;
+  border: none;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 16px;
+}
+
+.text-field:focus {
+  outline: none;
+  border-bottom: 2px solid rgb(29, 155, 240);
+}
+
+.birthdate-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.birthdate-section p {
+  font-weight: 600;
+  margin: 0;
+}
+
+.birthdate-section text {
+  color: rgb(29, 155, 240);
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Child modal styles */
+.child-modal {
+  background-color: white;
+  width: 300px;
+  height: 300px;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.child-modal h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.child-modal p {
+  color: #536471;
+  margin-bottom: 20px;
+}
+
+.child-modal input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.e-button {
+  color: white;
+  background-color: black;
+  padding: 5px 20px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+
+.last-section {
+  padding: 15px;
+}
+
+.last-section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.last-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.last-btn:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}

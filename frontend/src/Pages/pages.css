@@ -10,6 +10,7 @@
 .page {
   flex: 0.5;
   min-width: 600px;
+  /* min-width: 22.5rem; */
   border-right: 1px solid var(--twitter-background);
   border-left: 1px solid var(--twitter-background);
   overflow-y: scroll;

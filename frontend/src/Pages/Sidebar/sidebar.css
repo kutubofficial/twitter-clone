@@ -2,10 +2,12 @@
     border-right: 1px solid var(--twitter-background);
     flex: 0.3;
     position: inherit;
-    min-width: 150px;
+    min-width: 220px;
+    max-width: 200px;
     margin-top: 20px;
     padding-right: 20px;
     overflow-y: scroll;
+    /* border: 5px solid red; */
   }
   
   .sidebar::-webkit-scrollbar {

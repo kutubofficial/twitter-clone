@@ -1,25 +1,67 @@
-.login-history {
-  padding: 20px;
-  max-width: 700px;
-  margin: auto;
+.login-history-container {
+  max-width: 600px;
+  margin: 0 auto;
+  border-left: 1px solid #e1e8ed;
+  border-right: 1px solid #e1e8ed;
+  min-height: 100vh;
+  background-color: #fff;
 }
 
-.login-entry {
-  border: 1px solid #e1e8ed;
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: #f8f9fa;
+.login-history-header {
+  padding: 16px;
+  border-bottom: 1px solid #e1e8ed;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.login-entry h4 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
+.login-history-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+  color: #0f1419;
+}
+
+.login-history-content {
+  padding: 0;
+}
+.empty-state{
+  /* max-width: 20rem; */
+  min-width: 25rem;
+}
+.empty-state,
+.loading-spinner {
+  padding: 40px 0;
+  text-align: center;
+  color: #536471;
+  font-size: 15px;
+}
+
+.history-entry {
+  padding: 16px;
+  border-bottom: 1px solid #e1e8ed;
+  transition: background-color 0.2s;
+}
+
+.history-entry:last-child {
+  border-bottom: none;
+}
+
+.history-entry:hover {
+  background-color: #f7f9f9;
+}
+
+.entry-row {
+  display: flex;
+  font-size: 15px;
+  color: #0f1419;
+  margin-bottom: 6px;
+}
+
+.entry-label {
   font-weight: 600;
-}
-
-.login-entry p {
-  margin: 3px 0;
-  font-size: 14px;
-  color: #555;
+  color: #536471;
+  min-width: 80px;
+  margin-right: 10px;
 }
