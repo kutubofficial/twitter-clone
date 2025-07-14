@@ -1,0 +1,89 @@
+.avatar-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.avatar-modal {
+  background: #fff;
+  padding: 20px 24px;
+  border-radius: 8px;
+  width: 90%;
+  /* border: 5px solid red; */
+  max-width: 300px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: center;
+}
+
+.avatar-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatar-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.avatar-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.avatar-btn {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  max-width: 200px;
+  background-color: rgb(29, 155, 240);;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.avatar-btn:hover {
+  background-color: #157ec1;
+}
+
+.avatar-sub {
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.avatar-grid {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.avatar-choice {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.avatar-choice:hover {
+  transform: scale(1.1);
+  border-color: #1d9bf0;
+}
