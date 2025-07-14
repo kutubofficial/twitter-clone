@@ -8,10 +8,10 @@
 }
 
 .coverImage {
-  height: 150px;
-  width: 600px;
   /* border: 5px solid blue; */
-
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
 .coverImageContainer {
@@ -102,7 +102,7 @@
   position: relative;
   width: 100%;
   height: 98%;
-  border:  0.5px solid rgb(110, 109, 109);
+  border: 0.5px solid rgb(110, 109, 109);
   border-radius: 100%;
 }
 

@@ -9,11 +9,20 @@ body {
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 10px;
+  padding: 0 125px;
 }
 
 @media screen and (max-width:688px) {
   .app {
     display: block;
   }
+}
+
+
+.app:not(.explore-page) {
+  padding: 0 125px;
+}
+
+.app.explore-page {
+  padding: 0;
 }
