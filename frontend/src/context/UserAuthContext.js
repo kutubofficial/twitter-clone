@@ -23,7 +23,7 @@ export function UserAuthContextProvider(props) {
     try {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          const user = userCredential.user;
+          // const user = userCredential.user;
         })
         .catch((error) => {
           const errorCode = error.code;

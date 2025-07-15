@@ -1,5 +1,3 @@
-import React from "react";
-import SettingsIcon from "@mui/icons-material/Settings";
 import UnsubscribeIcon from '@mui/icons-material/Unsubscribe';
 import "../pages.css";
 import "./message.css";
@@ -8,7 +6,6 @@ const Message = () => {
     <div className="notification-page">
       <div className="container">
         <h2>Messages</h2>
-        {/* <SettingsIcon /> */}
         <UnsubscribeIcon/>
       </div>
       <hr />

@@ -1,5 +1,3 @@
-import React from 'react'
-import SettingsIcon from "@mui/icons-material/Settings";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import '../pages.css'
 const More = () => {

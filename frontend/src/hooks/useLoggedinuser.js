@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { BASE_URL } from "../config/api";
 
@@ -15,7 +15,7 @@ const useLoggedinuser = () => {
       .then((data) => {
         setloggedinuser(data);
       });
-  }, [email]); 
+  }, [email]);
 
   return [loggedinuser, setloggedinuser];
 };
