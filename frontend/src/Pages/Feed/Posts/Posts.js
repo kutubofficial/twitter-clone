@@ -28,7 +28,15 @@ const Posts = ({ p }) => {
             <p>{post}</p>
           </div>
         </div>
-        <img src={photo} alt="" width="500" />
+        {photo && <img src={photo} alt="Uploaded" width="500" />}
+
+        {p.audio && (
+          <audio controls style={{ marginTop: "10px", width: "85%" }}>
+            <source src={p.audio} type="audio/webm" />
+            Your browser does not support the audio element.
+          </audio>
+        )}
+
         <div className="post__footer">
           <ChatBubbleOutlineIcon
             className="post__fotter__icon"

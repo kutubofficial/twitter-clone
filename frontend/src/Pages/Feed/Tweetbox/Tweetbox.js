@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Tweetbox.css";
 import { Avatar, Button, TextField, IconButton } from "@mui/material";
 import AddPhotoAlternateOutlinedIcon from "@mui/icons-material/AddPhotoAlternateOutlined";
-import MicIcon from "@mui/icons-material/Mic"; 
-import EmailIcon from "@mui/icons-material/Email"; 
-import StopIcon from "@mui/icons-material/Stop"; 
+import MicIcon from "@mui/icons-material/Mic";
+import EmailIcon from "@mui/icons-material/Email";
+import StopIcon from "@mui/icons-material/Stop";
 import axios from "axios";
 import { useUserAuth } from "../../../context/UserAuthContext";
 import useLoggedinuser from "../../../hooks/useLoggedinuser";
@@ -138,10 +138,24 @@ const TweetBox = () => {
     }
   };
 
+  // const getAudioDuration = (url) =>
+  //   new Promise((resolve) => {
+  //     const audio = new Audio(url);
+  //     audio.onloadedmetadata = () => resolve(audio.duration);
+  //   });
+
   const getAudioDuration = (url) =>
     new Promise((resolve) => {
       const audio = new Audio(url);
-      audio.onloadedmetadata = () => resolve(audio.duration);
+      audio.addEventListener("loadedmetadata", () => {
+        if (isNaN(audio.duration) || audio.duration === Infinity) {
+          setTimeout(() => {
+            resolve(audio.duration || 0);
+          }, 500);
+        } else {
+          resolve(audio.duration);
+        }
+      });
     });
 
   const handleSubmit = async (e) => {
@@ -156,23 +170,34 @@ const TweetBox = () => {
 
       const tempUrl = URL.createObjectURL(audioBlob);
       const duration = await getAudioDuration(tempUrl);
+      // console.log("Audio duration (in seconds):", duration);
+      if (!isFinite(duration))
+        return alert("Could not determine audio duration. Try again.");
       if (duration > 300) return alert("Audio exceeds 5 minutes");
       if (audioBlob.size > 100 * 1024 * 1024)
         return alert("Audio exceeds 100MB");
 
       const formData = new FormData();
       formData.append("file", audioBlob);
-      formData.append("upload_preset", "YOUR_CLOUDINARY_PRESET");
+      formData.append("upload_preset", "audio_upload");
 
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/YOUR_CLOUDINARY_NAME/audio/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const cloudRes = await res.json();
-      audioUrl = cloudRes.secure_url;
+      try {
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/dcyw0epbw/raw/upload",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        const data = await res.json();
+        console.log("Cloudinary upload success:", data);
+        audioUrl = data.secure_url;
+      } catch (error) {
+        console.error("Cloudinary upload failed:", error);
+        alert("Audio upload failed. Check console.");
+        return;
+      }
     }
 
     const postObject = {

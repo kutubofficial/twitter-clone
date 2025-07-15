@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import { Avatar } from "@mui/material";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PublishIcon from "@mui/icons-material/Publish";
-const posts = ({p}) => {
+const posts = ({ p }) => {
   const { name, username, photo, post, profilephoto } = p;
   return (
     <div className="post">
@@ -26,7 +26,15 @@ const posts = ({p}) => {
             <p>{post}</p>
           </div>
         </div>
-        <img src={photo} alt="" width="500" />
+        {photo && <img src={photo} alt="Uploaded" width="500" />}
+
+        {p.audio && (
+          <audio controls style={{ marginTop: "10px", width: "80%" }}>
+            <source src={p.audio} type="audio/webm" />
+            Your browser does not support the audio element.
+          </audio>
+        )}
+
         <div className="post__footer">
           <ChatBubbleOutlineIcon
             className="post__fotter__icon"
@@ -39,6 +47,6 @@ const posts = ({p}) => {
       </div>
     </div>
   );
-}
+};
 
-export default posts
+export default posts;
