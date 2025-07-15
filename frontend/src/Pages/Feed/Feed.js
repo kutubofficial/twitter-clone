@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Feed.css";
 import Posts from "./Posts/Posts";
 import Tweetbox from "./Tweetbox/Tweetbox";
+import { BASE_URL } from "../../config/api";
 
 const Feed = () => {
   const [post, setpost] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/post")
+    fetch(`${BASE_URL}/post`)
       .then((res) => res.json())
       .then((data) => {
         setpost(data);

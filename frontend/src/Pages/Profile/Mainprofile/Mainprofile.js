@@ -11,6 +11,7 @@ import Editprofile from "../Editprofile/Editprofile";
 import axios from "axios";
 import useLoggedinuser from "../../../hooks/useLoggedinuser";
 import AvatarModal from "../../.././Avatar/AvatarSelector";
+import { BASE_URL } from "../../../config/api";
 
 const Mainprofile = ({ user }) => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Mainprofile = ({ user }) => {
   const [showAvatarModal, setShowAvatarModal] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/userpost?email=${user?.email}`)
+    fetch(`${BASE_URL}/userpost?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setpost(data);
@@ -46,7 +47,7 @@ const Mainprofile = ({ user }) => {
         };
         setisloading(false);
         if (url) {
-          fetch(`http://localhost:5000/userupdate/${user?.email}`, {
+          fetch(`${BASE_URL}/userupdate/${user?.email}`, {
             method: "PATCH",
             headers: {
               "content-type": "application/json",
@@ -80,7 +81,7 @@ const Mainprofile = ({ user }) => {
         };
         setisloading(false);
         if (url) {
-          fetch(`http://localhost:5000/userupdate/${user?.email}`, {
+          fetch(`${BASE_URL}/userupdate/${user?.email}`, {
             method: "PATCH",
             headers: {
               "content-type": "application/json",
@@ -98,7 +99,7 @@ const Mainprofile = ({ user }) => {
 
   const handleChooseAvatar = (avatarUrl) => {
     setisloading(true);
-    fetch(`http://localhost:5000/userupdate/${user?.email}`, {
+    fetch(`${BASE_URL}/userupdate/${user?.email}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

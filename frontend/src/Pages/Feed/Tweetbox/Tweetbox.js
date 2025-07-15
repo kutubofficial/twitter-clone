@@ -8,6 +8,7 @@ import StopIcon from "@mui/icons-material/Stop";
 import axios from "axios";
 import { useUserAuth } from "../../../context/UserAuthContext";
 import useLoggedinuser from "../../../hooks/useLoggedinuser";
+import { BASE_URL } from "../../../config/api";
 
 const TweetBox = () => {
   const { user } = useUserAuth();
@@ -41,9 +42,7 @@ const TweetBox = () => {
 
       if (user.providerData[0]?.providerId === "password") {
         try {
-          const res = await fetch(
-            `http://localhost:5000/loggedinuser?email=${email}`
-          );
+          const res = await fetch(`${BASE_URL}/loggedinuser?email=${email}`);
           const data = await res.json();
           setName(data[0]?.name || "");
           setUsername(data[0]?.username || "");
@@ -109,7 +108,7 @@ const TweetBox = () => {
   };
 
   const sendOtp = async () => {
-    const res = await fetch("http://localhost:5000/send-otp", {
+    const res = await fetch(`${BASE_URL}/send-otp`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
@@ -124,7 +123,7 @@ const TweetBox = () => {
   };
 
   const verifyOtp = async () => {
-    const res = await fetch("http://localhost:5000/verify-otp", {
+    const res = await fetch(`${BASE_URL}/verify-otp`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, otp }),
@@ -204,7 +203,7 @@ const TweetBox = () => {
       audio: audioUrl,
     };
 
-    await fetch("http://localhost:5000/post", {
+    await fetch(`${BASE_URL}/post`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(postObject),

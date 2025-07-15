@@ -8,6 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "./firbase";
+import { BASE_URL } from "../config/api";
 
 const userAuthContext = createContext();
 
@@ -57,7 +58,7 @@ export function UserAuthContextProvider(props) {
         console.log("HISTORY ", userAgent, os, deviceType);
 
         try {
-          await fetch("http://localhost:5000/save-login-history", {
+          await fetch(`$${BASE_URL}/save-login-history`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

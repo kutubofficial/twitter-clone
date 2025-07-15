@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../../context/UserAuthContext";
 import "./LoginHistory.css";
+import { BASE_URL } from "../../config/api";
 
 const LoginHistory = () => {
   const { user } = useUserAuth();
@@ -13,7 +14,7 @@ const LoginHistory = () => {
     const fetchHistory = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/login-history?email=${user.email}`
+          `${BASE_URL}/login-history?email=${user.email}`
         );
         const data = await res.json();
         setHistory(data);

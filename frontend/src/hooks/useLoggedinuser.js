@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
+import { BASE_URL } from "../config/api";
 
 const useLoggedinuser = () => {
   const { user } = useUserAuth();
@@ -9,7 +10,7 @@ const useLoggedinuser = () => {
   useEffect(() => {
     if (!email) return;
 
-    fetch(`http://localhost:5000/loggedinuser?email=${email}`)
+    fetch(`${BASE_URL}/loggedinuser?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         setloggedinuser(data);

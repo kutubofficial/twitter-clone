@@ -4,6 +4,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "../../context/UserAuthContext";
 import "./login.css";
+import { BASE_URL } from "../../config/api";
 
 const Signup = () => {
   const [username, setusername] = useState("");
@@ -20,7 +21,7 @@ const Signup = () => {
     try {
       await signUp(email, password);
       const user = { username, name, email, password };
-      const res = await fetch("http://localhost:5000/register", {
+      const res = await fetch(`${BASE_URL}/register`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(user),
