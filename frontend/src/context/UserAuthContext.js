@@ -55,10 +55,10 @@ export function UserAuthContextProvider(props) {
         const userAgent = navigator.userAgent;
         const os = navigator.platform;
         const deviceType = /mobile/i.test(userAgent) ? "mobile" : "desktop";
-        console.log("HISTORY ", userAgent, os, deviceType);
+        // console.log("HISTORY ", userAgent, os, deviceType);
 
         try {
-          await fetch(`$${BASE_URL}/save-login-history`, {
+          await fetch(`${BASE_URL}/save-login-history`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
