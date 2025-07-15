@@ -138,12 +138,6 @@ const TweetBox = () => {
     }
   };
 
-  // const getAudioDuration = (url) =>
-  //   new Promise((resolve) => {
-  //     const audio = new Audio(url);
-  //     audio.onloadedmetadata = () => resolve(audio.duration);
-  //   });
-
   const getAudioDuration = (url) =>
     new Promise((resolve) => {
       const audio = new Audio(url);
@@ -170,9 +164,9 @@ const TweetBox = () => {
 
       const tempUrl = URL.createObjectURL(audioBlob);
       const duration = await getAudioDuration(tempUrl);
-      // console.log("Audio duration (in seconds):", duration);
-      if (!isFinite(duration))
-        return alert("Could not determine audio duration. Try again.");
+      console.log("Audio duration (in seconds):", duration);
+      // if (!isFinite(duration))
+      //   return alert("Could not determine audio duration. Try again.");
       if (duration > 300) return alert("Audio exceeds 5 minutes");
       if (audioBlob.size > 100 * 1024 * 1024)
         return alert("Audio exceeds 100MB");
